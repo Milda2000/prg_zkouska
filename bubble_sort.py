@@ -1,28 +1,40 @@
-#incializace seznamu vstupních hodnot
-numbers = []
-#získání vstupních hodnot od uživatele a jejich ověření
-while True:
-    try:
-        numbers = [float(num) for num in input("Zadejte číselné hodnoty, které chcete setřídit (oddělené mezerou): ").split()]
-        if len(numbers) < 2:
-            print("Zadejte alespoň dvě hodnoty")
-        else:
-            break
-    except ValueError:
-        print("Zadané hodnoty nebyly číselné")
-#vypsání vstupních hodnot uživateli   
-print(f"Seznam vstuních prvků:\n{numbers}")
+#function for getting a list of numbers from user
+def inputList(text):
+    #incialization of the list
+    numbers = []
+    #function obtains values from user and tests if they pass the requirements
+    while True:
+        try:
+            numbers = [float(num) for num in input(text).split()]
+            if len(numbers) < 2:
+                print("Input must be atleast two numbers")
+            else:
+                break
+        except ValueError:
+            print("Input wasn't numeric")
+    #function prints out a list of numbers inputted by the user
+    print(f"List of input values:\n{numbers}")
+    #function returns a list of numbers inputted by the user
+    return numbers
 
-#použití algoritmu bubble sort k setřídění seznamu
-#zjištění délky seznamu
-lenght = len(numbers)
-#průchod všech prvků v seznamu tolikrát kolik jich v seznamu je (mínus poslední)
-for i in range(lenght-1):
-    #průchod všech prvků v seznamu (kromě posledního), jejich porovnání vůčí prvku napravo a popř. prohození
-    for j in range(lenght-1):
-        if numbers[j] > numbers[j+1]:
-            numbers[j], numbers[j+1] = numbers[j+1], numbers[j]
-    
-#vypsání setříděného seznamu uživateli
-print(f"Setřízené prvky:\n{numbers}")
+def bubbleSort(list):
+    #get the length of the list
+    length = len(list)
+    #function goes through the elements in the list as many times as they are elements in the list (minus one) 
+    for i in range(length-1):
+        #function goes through all of the elements in the list (except the last one), compares them to the value of the element on the right and if needed swaps them
+        for j in range(length-1):
+            if list[j] > list[j+1]:
+                list[j], list[j+1] = list[j+1], list[j]
 
+    #function returns the sorted list
+    return list
+
+#get numbers from user
+numbers = inputList("Input numbers that are supposed to be sorted (divide them by spacebar):")
+
+#use of bubble sort to sort the input values
+sorted_numbers = bubbleSort(numbers)
+
+#print out a list of sorted numbers for user into the console
+print(f"Sorted numbers:\n{sorted_numbers}")
