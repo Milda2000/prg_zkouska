@@ -7,7 +7,7 @@ def inputList(text):
         try:
             numbers = [float(num) for num in input(text).split()]
             if len(numbers) < 2:
-                print("Input must be atleast two numbers")
+                print("Input must be at least two numbers")
             else:
                 break
         except ValueError:
